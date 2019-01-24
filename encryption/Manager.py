@@ -1,11 +1,8 @@
-import hashlib
-import binascii
-from Crypto.Cipher import DES3
 from Crypto.Random import get_random_bytes
 from pyDes import *
 import hashlib
 import hmac
-from Crypto.Cipher import AES
+import Crypto
 import Crypto.Cipher.AES
 from Crypto.Cipher import AES
 import Crypto.Cipher.AES
@@ -87,7 +84,7 @@ def generate_iv(block_size=56):
 
 
 def encrypt_3des():  # Implementation of 3des
-    block_size = 8  # Block size of 64 bits for 3des
+    block_size = 16  # Block size of 64 bits for 3des
     encryption_key = generate_encryption_key(block_size)
     data = "This is my encrypted data"
     cipher = triple_des(encryption_key, CBC, generate_iv(8), pad=None, padmode=PAD_PKCS5)
@@ -96,36 +93,110 @@ def encrypt_3des():  # Implementation of 3des
     print("Decrypted: %r" % cipher.decrypt(encrypted_information))
 
 
-def encrypt_aes128():  # Implementation of aes128
-    block_size = 16  # Block size of 128 bits for aes128.
+def encrypt_aes128():
+    # Implementation of AES128.
+    # Block size of 16 with PKCS7 padding.
+    # Encrypts and message using AES128 to a file,
+    # and reads it back to decrypt the data.
+
+    # Initial set up of encryption cipher.
+    block_size = 16
     encryption_key = generate_encryption_key(block_size)
-    iv = generate_iv(16)
-    plaintext = Crypto.Util.Padding.pad(b'This is the data I am going to encrypt', block_size, style='pkcs7')
+    iv = generate_iv(block_size)
+    plaintext = b'THIS IS THE DATA THAT IS GOING TO BE ENCRYPTED'
+    print(plaintext.decode())
+    plaintext = Crypto.Util.Padding.pad(plaintext, block_size, style='pkcs7')
     cipher = AES.new(encryption_key, AES.MODE_CBC, iv)
+
+    # Encryption of data and writing to file.
     ciphertext = cipher.encrypt(plaintext)
+    f = open("encrypted.txt", "wb")
+    f.write(hexlify(ciphertext))
     print(ciphertext)
+    del ciphertext
+
+    # Opening file and decrypting data.
+    f = open("encrypted.txt", "r")
+    ciphertext = f.read().encode("utf-8")
     decipher = AES.new(encryption_key, AES.MODE_CBC, iv)
-    plaintext = decipher.decrypt(ciphertext)
+    plaintext = decipher.decrypt(unhexlify(ciphertext))
     plaintext = Crypto.Util.Padding.unpad(plaintext, block_size, style='pkcs7')
-    print(plaintext)
+    print(plaintext.decode())
 
 
-def encrypt_aes256():  # Implementation of aes256
-    block_size = 32  # Block size of 128 bits for aes128.
+def encrypt_aes256():
+    # Implementation of AES128.
+    # Block size of 16 with PKCS7 padding.
+    # Encrypts and message using AES128 to a file,
+    # and reads it back to decrypt the data.
+
+    # Initial set up of encryption cipher.
+    block_size = 32
     encryption_key = generate_encryption_key(block_size)
     iv = generate_iv(16)
-    plaintext = Crypto.Util.Padding.pad(b'This is the data I am going to encrypt', block_size, style='pkcs7')
+    plaintext = b'THIS IS THE DATA THAT IS GOING TO BE ENCRYPTED'
+    print(plaintext.decode())
+    plaintext = Crypto.Util.Padding.pad(plaintext, block_size, style='pkcs7')
     cipher = AES.new(encryption_key, AES.MODE_CBC, iv)
+
+    # Encryption of data and writing to file.
     ciphertext = cipher.encrypt(plaintext)
+    f = open("encrypted.txt", "wb")
+    f.write(hexlify(ciphertext))
     print(ciphertext)
+    del ciphertext
+
+    # Opening file and decrypting data.
+    f = open("encrypted.txt", "r")
+    ciphertext = f.read().encode("utf-8")
     decipher = AES.new(encryption_key, AES.MODE_CBC, iv)
-    plaintext = decipher.decrypt(ciphertext)
+    plaintext = decipher.decrypt(unhexlify(ciphertext))
     plaintext = Crypto.Util.Padding.unpad(plaintext, block_size, style='pkcs7')
-    print(plaintext)
+    print(plaintext.decode())
 
 
 def generate_hmac():
     return hmac.new(hmac_key, b'encrypted message here', hashlib.sha256).hexdigest()
+
+
+def encrypt_aes128_verbose():  # VERBOSE IMPLEMENTATION FOR DEMO PURPOSES
+    # REMOVE ME
+    print()
+    block_size = 16  # Block size of 128 bits for aes128.
+    encryption_key = generate_encryption_key(block_size)
+    iv = generate_iv(16)
+    plaintext = b'ENCRYPT ME'
+
+    print("Origional text before pkcs7 padding is added:")
+    print(plaintext.decode())
+
+    plaintext = Crypto.Util.Padding.pad(plaintext, block_size, style='pkcs7')
+    print("\nThis is now the data encoded with utf-8 and padded with pkcs7")
+    print(plaintext)
+    print()
+    cipher = AES.new(encryption_key, AES.MODE_CBC, iv)
+    ciphertext = cipher.encrypt(plaintext)
+
+    print("\nRaw Encrypted data:")
+    print(ciphertext)
+    print("Hex:")
+    print(hexlify(ciphertext))
+    print()
+
+    f = open("text.txt", "wb")
+    f.write(hexlify(ciphertext))
+    f = open("text.txt", "r")
+
+    temp = f.read().encode("utf-8")
+
+    decipher = AES.new(encryption_key, AES.MODE_CBC, iv)
+    plaintext = decipher.decrypt(unhexlify(temp))
+
+    print("Back to unencrypted with padding")
+    print(plaintext)
+    plaintext = Crypto.Util.Padding.unpad(plaintext, block_size, style='pkcs7')
+    print("\noriginal form:")
+    print(plaintext.decode())
 
 
 # Start
