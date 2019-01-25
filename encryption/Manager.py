@@ -1,14 +1,14 @@
-from Crypto.Random import get_random_bytes
-from pyDes import *
 import hashlib
 import hmac
 import Crypto
 import Crypto.Cipher.AES
-from Crypto.Cipher import AES
-import Crypto.Cipher.AES
 import Crypto.Util.Padding
-from binascii import hexlify, unhexlify
 import secrets
+from Crypto.Random import get_random_bytes
+from Crypto.Cipher import AES
+from binascii import hexlify
+from binascii import unhexlify
+from pyDes import *
 
 """
  This program uses a string to demonstrate a round-trip encryption/decryption
@@ -51,13 +51,14 @@ def generate_encryption_key(key_length=16):
 
 
 def generate_hmac(data="123"):
-    # Creation of HMAC. Should be IV + encrypted data
+    # Creation of HMAC. IV + encrypted data
 
     return hmac.new(hmac_key, data, hashlib.sha256).hexdigest()
 
 
 def hmac_key(key_length=16):
-    # Derivation of HMAC key
+    # Derivation of HMAC key using PBKDF#2
+    # Hashed with sha256 and randomly generated salt.
 
     salt = str.encode(secrets.token_hex(8))
     key = hashlib.pbkdf2_hmac('sha256', master_key, salt, 1, key_length)
@@ -93,10 +94,11 @@ def hash_select():
 def algorithm_select():
     # Obtain user selection for desired algorithm
 
-    print("Please select which algorithm you would like to use")
+    print("Please select which algorithm you would like to use:")
     print("1. 3des")
     print("2. aes128")
     print("3. aes256")
+    print()
     print("4. aes128 verbose")
     while True:
         try:
@@ -144,10 +146,11 @@ def encrypt_aes128():
     ciphertext = cipher.encrypt(plaintext)
     f = open("encrypted.txt", "wb")
     f.write(hexlify(ciphertext))
-    print(ciphertext+iv)
     temp = ciphertext+iv
     local_hmac = generate_hmac(temp)
-    print("HMAC IS: " + local_hmac)
+    print("\nEncrypted:")
+    print(ciphertext)
+    print("\nHMAC:\n" + local_hmac)
     del ciphertext
 
     # Opening file and decrypting data.
@@ -156,13 +159,14 @@ def encrypt_aes128():
     decipher = AES.new(encryption_key, AES.MODE_CBC, iv)
     plaintext = decipher.decrypt(unhexlify(ciphertext))
     plaintext = Crypto.Util.Padding.unpad(plaintext, block_size, style='pkcs7')
+    print("\nDecrypted:")
     print(plaintext.decode())
 
 
 def encrypt_aes256():
-    # Implementation of AES128.
-    # Block size of 16 with PKCS7 padding.
-    # Encrypts and message using AES128 to a file,
+    # Implementation of AES256.
+    # Block size of 32 with PKCS7 padding.
+    # Encrypts and message using AES256 to a file,
     # and reads it back to decrypt the data.
 
     # Initial set up of encryption cipher.
@@ -178,10 +182,11 @@ def encrypt_aes256():
     ciphertext = cipher.encrypt(plaintext)
     f = open("encrypted.txt", "wb")
     f.write(hexlify(ciphertext))
-    print(ciphertext+iv)
-    temp = ciphertext+iv
+    temp = ciphertext + iv
     local_hmac = generate_hmac(temp)
-    print("HMAC IS: " + local_hmac)
+    print("\nEncrypted:")
+    print(ciphertext)
+    print("\nHMAC:\n" + local_hmac)
     del ciphertext
 
     # Opening file and decrypting data.
@@ -190,6 +195,7 @@ def encrypt_aes256():
     decipher = AES.new(encryption_key, AES.MODE_CBC, iv)
     plaintext = decipher.decrypt(unhexlify(ciphertext))
     plaintext = Crypto.Util.Padding.unpad(plaintext, block_size, style='pkcs7')
+    print("\nDecrypted:")
     print(plaintext.decode())
 
 
@@ -258,6 +264,7 @@ def encrypt_aes128_verbose():
     f.write(hexlify(ciphertext))
     del ciphertext
 
+    f = open("encrypted.txt", "r")
     ciphertext = f.read().encode("utf-8")
     print("Text read from file:")
     print(ciphertext)

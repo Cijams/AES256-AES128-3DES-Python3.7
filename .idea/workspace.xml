@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2223bcc2-a649-4a7a-8b12-7920ed99919b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encryption/Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/encryption/Manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encryption/encrypted.txt" beforeDir="false" afterPath="$PROJECT_DIR$/encryption/encrypted.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encryption/text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/encryption/text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encryption/words.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/encryption/text.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,47 +16,60 @@
     <session id="266287672">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="4" />
+          <entry key="py" value="5" />
           <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="4" />
+          <entry key="Python" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="4986" />
+          <entry key="py" value="5126" />
           <entry key="txt" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Python" value="4986" />
+          <entry key="Python" value="5126" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encryption/Manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4104">
-              <caret line="225" column="16" selection-start-line="225" selection-start-column="16" selection-end-line="225" selection-end-column="16" />
+            <state relative-caret-position="-1801">
+              <caret line="168" column="39" selection-start-line="168" selection-start-column="39" selection-end-line="168" selection-end-column="39" />
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
-                <marker date="1548374878231" expanded="true" signature="3409:3412" ph="..." />
-                <marker date="1548374878231" expanded="true" signature="7187:7192" ph="..." />
+                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1548376260159" expanded="true" signature="3475:3478" ph="..." />
+                <marker date="1548376260159" expanded="true" signature="7353:7358" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/Desktop/Submission/Manager.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/encryption/encrypted.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="14" selection-start-column="14" selection-end-column="14" />
+              <caret column="17" selection-start-column="17" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -79,6 +90,7 @@
     <findStrings>
       <find>hmac_key</find>
       <find>hmac</find>
+      <find>select w</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -92,10 +104,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="223" />
     <option name="y" value="70" />
-    <option name="width" value="1998" />
+    <option name="width" value="2300" />
     <option name="height" value="1331" />
   </component>
   <component name="ProjectView">
@@ -187,11 +199,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="223" y="70" width="1998" height="1331" extended-state="0" />
-    <editor active="true" />
+    <frame x="223" y="70" width="2300" height="1331" extended-state="0" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21662246" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
@@ -199,7 +210,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32999164" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36173767" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36925647" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -251,18 +262,28 @@
     <entry file="file://$PROJECT_DIR$/encryption/encrypted.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/encryption/Manager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4104">
-          <caret line="225" column="16" selection-start-line="225" selection-start-column="16" selection-end-line="225" selection-end-column="16" />
+        <state relative-caret-position="-1801">
+          <caret line="168" column="39" selection-start-line="168" selection-start-column="39" selection-end-line="168" selection-end-column="39" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <marker date="1548374878231" expanded="true" signature="3409:3412" ph="..." />
-            <marker date="1548374878231" expanded="true" signature="7187:7192" ph="..." />
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1548376260159" expanded="true" signature="3475:3478" ph="..." />
+            <marker date="1548376260159" expanded="true" signature="7353:7358" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/Submission/Manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
