@@ -9,9 +9,15 @@ from Crypto.Cipher import AES
 from binascii import hexlify
 from binascii import unhexlify
 from pyDes import *
+import pickle
 
 """
- This program uses a string to demonstrate a round-trip encryption/decryption
+ TO USE: Ensure message to be encrypted is local to CryptoManager.py
+as "plaintext.txt". Run Encryption. Program will detect what algorithm
+was used to encrypt with. If it is AES128, AES256, or 3DES it will
+attempt to decrypted it. Metadata for encryption to be stored as keys.pkl
+
+ This program demonstrates a round-trip encryption/decryption
 of 3DES, AES128 and AES256, to and from a text file.
 
  Initial creation of a master key is done using PBKDF#2.
@@ -50,7 +56,7 @@ def generate_encryption_key(key_length=16):
     return key
 
 
-def generate_hmac(data="123"):
+def generate_hmac(data=b'123'):
     # Creation of HMAC. IV + encrypted data
 
     return hmac.new(hmac_key, data, hashlib.sha256).hexdigest()
@@ -91,35 +97,6 @@ def hash_select():
     return key
 
 
-def algorithm_select():
-    # Obtain user selection for desired algorithm
-
-    print("Please select which algorithm you would like to use:")
-    print("1. 3des")
-    print("2. aes128")
-    print("3. aes256")
-    print()
-    print("4. aes128 verbose")
-    while True:
-        try:
-            i = int(input())
-            if i == 1 or i == 2\
-                    or i == 3 or i == 4:
-                break
-            print('Enter 1, 2, 3 or 4')
-        except ValueError:
-            print('Enter 1, 2, 3 or 4')
-            continue
-    if i == 1:
-        encrypt_3des()
-    if i == 2:
-        encrypt_aes128()
-    if i == 3:
-        encrypt_aes256()
-    if i == 4:
-        encrypt_aes128_verbose()
-
-
 def generate_iv(block_size=56):
     # Generated random bytes of various block size
     # to be used as an IV.
@@ -127,18 +104,18 @@ def generate_iv(block_size=56):
     return get_random_bytes(block_size)
 
 
-def encrypt_aes128():
+def encrypt_aes128(plaintext):
     # Implementation of AES128.
     # Block size of 16 with PKCS7 padding.
     # Encrypts and message using AES128 to a file,
     # and reads it back to decrypt the data.
 
     # Initial set up of encryption cipher.
+    algorithm = "aes128"
+    key_size = 16
     block_size = 16
-    encryption_key = generate_encryption_key(block_size)
+    encryption_key = generate_encryption_key(key_size)
     iv = generate_iv(block_size)
-    plaintext = b'THIS IS THE DATA THAT IS GOING TO BE ENCRYPTED'
-    print(plaintext.decode())
     plaintext = Crypto.Util.Padding.pad(plaintext, block_size, style='pkcs7')
     cipher = AES.new(encryption_key, AES.MODE_CBC, iv)
 
@@ -146,35 +123,87 @@ def encrypt_aes128():
     ciphertext = cipher.encrypt(plaintext)
     f = open("encrypted.txt", "wb")
     f.write(hexlify(ciphertext))
-    temp = ciphertext+iv
-    local_hmac = generate_hmac(temp)
+
+    local_hmac = generate_hmac(ciphertext+iv)
+
+    print("NOW ENCRYPTING:")
+    print("\nHMAC:\n" + local_hmac)
     print("\nEncrypted:")
     print(ciphertext)
-    print("\nHMAC:\n" + local_hmac)
     del ciphertext
 
-    # Opening file and decrypting data.
+    local_keys = dict(int_list=[1, 2, 3, 4],
+                      my_keys=encryption_key,
+                      my_hmac=local_hmac,
+                      my_iv=iv,
+                      my_block_size=block_size,
+                      my_algorithm=algorithm,
+                      my_key_size=key_size)
+
+    pickle.dump(local_keys, open('keys.pkl', 'wb'))
+
+
+def decrypt_aes128():
+    # TODO generate HMAC INSTEAD OF READING IT
+
+    # Initialize variables
+    algorithm = "Unknown Algorithm"
+    local_hmac = ""
+    encryption_key = ""
+    iv = ""
+    block_size = ""
+
+    # Read data and ensure it matches with decryption algorithm
+    print("NOW DECRYPTING:")
+    try:
+        enc_meta = pickle.load(open('keys.pkl', 'rb'))
+        encryption_key = enc_meta['my_keys']
+        local_hmac = enc_meta['my_hmac']
+        iv = enc_meta['my_iv']
+        block_size = enc_meta['my_block_size']
+        algorithm = enc_meta['my_algorithm']
+    except (FileNotFoundError, RuntimeError):
+        print("File format is incorrect. Encrypt the data using this program.")
+    print("_______________"+algorithm)
+    if algorithm != "aes128" and algorithm != "aes256":
+        print("Trying to decrypt " + algorithm + " with aes128")
+        sys.exit(0)
+
+    # Verify HMAC and decrypt data
+    print("HMAC:")
+    print(local_hmac)
     f = open("encrypted.txt", "r")
     ciphertext = f.read().encode("utf-8")
     decipher = AES.new(encryption_key, AES.MODE_CBC, iv)
     plaintext = decipher.decrypt(unhexlify(ciphertext))
+
+    print("______________________")
+    print()
+    print(block_size)
+    print()
+    print(plaintext)
+    print()
+    print("______________________")
+
     plaintext = Crypto.Util.Padding.unpad(plaintext, block_size, style='pkcs7')
     print("\nDecrypted:")
+    f = open("plaintext.txt", "w")
+    f.write(plaintext.decode())
     print(plaintext.decode())
 
 
-def encrypt_aes256():
-    # Implementation of AES256.
-    # Block size of 32 with PKCS7 padding.
-    # Encrypts and message using AES256 to a file,
+def encrypt_aes256(plaintext):
+    # Implementation of AES128.
+    # Block size of 16 with PKCS7 padding.
+    # Encrypts and message using AES128 to a file,
     # and reads it back to decrypt the data.
 
     # Initial set up of encryption cipher.
-    block_size = 32
-    encryption_key = generate_encryption_key(block_size)
-    iv = generate_iv(16)
-    plaintext = b'THIS IS THE DATA THAT IS GOING TO BE ENCRYPTED'
-    print(plaintext.decode())
+    algorithm = "aes256"
+    key_size = 32
+    block_size = 16
+    encryption_key = generate_encryption_key(key_size)
+    iv = generate_iv(block_size)
     plaintext = Crypto.Util.Padding.pad(plaintext, block_size, style='pkcs7')
     cipher = AES.new(encryption_key, AES.MODE_CBC, iv)
 
@@ -182,21 +211,24 @@ def encrypt_aes256():
     ciphertext = cipher.encrypt(plaintext)
     f = open("encrypted.txt", "wb")
     f.write(hexlify(ciphertext))
-    temp = ciphertext + iv
-    local_hmac = generate_hmac(temp)
+
+    local_hmac = generate_hmac(ciphertext+iv)
+
+    print("NOW ENCRYPTING:")
+    print("\nHMAC:\n" + local_hmac)
     print("\nEncrypted:")
     print(ciphertext)
-    print("\nHMAC:\n" + local_hmac)
     del ciphertext
 
-    # Opening file and decrypting data.
-    f = open("encrypted.txt", "r")
-    ciphertext = f.read().encode("utf-8")
-    decipher = AES.new(encryption_key, AES.MODE_CBC, iv)
-    plaintext = decipher.decrypt(unhexlify(ciphertext))
-    plaintext = Crypto.Util.Padding.unpad(plaintext, block_size, style='pkcs7')
-    print("\nDecrypted:")
-    print(plaintext.decode())
+    local_keys = dict(int_list=[1, 2, 3, 4],
+                      my_keys=encryption_key,
+                      my_hmac=local_hmac,
+                      my_iv=iv,
+                      my_block_size=block_size,
+                      my_algorithm=algorithm,
+                      my_key_size=key_size)
+
+    pickle.dump(local_keys, open('keys.pkl', 'wb'))
 
 
 def encrypt_3des():
@@ -237,7 +269,6 @@ def encrypt_3des():
 
 def encrypt_aes128_verbose():
     # VERBOSE IMPLEMENTATION FOR DEMO PURPOSES
-
     print()
     print("ROUND TRIP PRINTED:\n")
     block_size = 16
@@ -279,7 +310,66 @@ def encrypt_aes128_verbose():
     print(plaintext.decode())
 
 
+def user_choice():
+    print("\n\nWould you like to encrypt or decrypt?")
+    print("1. Encrypt")
+    print("2. Decrypt")
+    while True:
+        try:
+            i = int(input())
+            if i == 1 or i == 2\
+                    or i == 3:
+                break
+            print('Enter 1, 2, 3')
+        except ValueError:
+            print('Enter 1, 2, 3')
+            continue
+    if i == 1:
+        return 1
+    if i == 2:
+        return 2
+
+
 # Start
-master_key = hash_select()
-hmac_key = hmac_key()
-algorithm_select()
+choice = user_choice()
+if choice == 1:
+    try:
+        unencrypted_text = (open('plaintext.txt', 'rb'))
+        unencrypted_text = unencrypted_text.read()
+        print()
+        print("This is the plaintext to be encrypted:")
+        print(unencrypted_text.decode())
+        print()
+    except FileNotFoundError:
+        print("Ensure the text to be encrypted is in the local directory as \"plaintext.txt\"")
+        sys.exit(0)
+    master_key = hash_select()
+    hmac_key = hmac_key()
+
+    print("Please select which algorithm you would like to use:")
+    print("1. 3des")
+    print("2. aes128")
+    print("3. aes256")
+    print()
+    print("4. aes128 verbose")
+    while True:
+        try:
+            alg = int(input())
+            if alg == 1 or alg == 2\
+                    or alg == 3 or alg == 4:
+                break
+            print('Enter 1, 2, 3 or 4')
+        except ValueError:
+            print('Enter 1, 2, 3 or 4')
+            continue
+    if alg == 1:
+        encrypt_3des()
+    if alg == 2:
+        encrypt_aes128(unencrypted_text)
+    if alg == 3:
+        encrypt_aes256(unencrypted_text)
+    if alg == 4:
+        encrypt_aes128_verbose()
+
+if choice == 2:
+    decrypt_aes128()

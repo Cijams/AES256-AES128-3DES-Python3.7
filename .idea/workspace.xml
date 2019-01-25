@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2223bcc2-a649-4a7a-8b12-7920ed99919b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/encryption/Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/encryption/Manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encryption/plaintext.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/AES256-AES128-3DES-Python3.7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AES256-AES128-3DES-Python3.7.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encryption/Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/encryption/CryptoManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encryption/encrypted.txt" beforeDir="false" afterPath="$PROJECT_DIR$/encryption/encrypted.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encryption/text.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,61 +19,94 @@
     <session id="266287672">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.3" value="2" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="5" />
-          <entry key="txt" value="4" />
+          <entry key="pkl" value="2" />
+          <entry key="py" value="8" />
+          <entry key="txt" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="5" />
+          <entry key="PLAIN_TEXT" value="7" />
+          <entry key="Python" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="5126" />
-          <entry key="txt" value="6" />
+          <entry key="dummy" value="26" />
+          <entry key="pkl" value="5" />
+          <entry key="py" value="7864" />
+          <entry key="txt" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Python" value="5126" />
+          <entry key="PLAIN_TEXT" value="95" />
+          <entry key="Python" value="7864" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encryption/Manager.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/encryption/CryptoManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1801">
-              <caret line="168" column="39" selection-start-line="168" selection-start-column="39" selection-end-line="168" selection-end-column="39" />
+            <state relative-caret-position="531">
+              <caret line="167" column="32" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1548376260159" expanded="true" signature="3475:3478" ph="..." />
-                <marker date="1548376260159" expanded="true" signature="7353:7358" ph="..." />
+                <element signature="e#6187#7321#0" />
+                <element signature="e#7903#9176#0" />
+                <marker date="1548460382875" expanded="true" signature="3056:3058" ph="..." />
+                <marker date="1548460382875" expanded="true" signature="4741:5946" ph="..." />
+                <marker date="1548460382875" expanded="false" signature="8364:8369" ph="..." />
+                <marker date="1548460382875" expanded="true" signature="9662:10094" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$USER_HOME$/Desktop/Submission/Manager.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/hmac.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="3322">
+              <caret line="152" selection-start-line="152" selection-end-line="152" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/venv/Lib/site-packages/Crypto/Util/Padding.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="63" selection-start-line="63" selection-end-line="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/encryption/plaintext.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="14" lean-forward="true" selection-start-column="14" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/encryption/keys.pkl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="2" column="35" lean-forward="true" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -101,12 +137,15 @@
       <list>
         <option value="$PROJECT_DIR$/encryption/text.txt" />
         <option value="$PROJECT_DIR$/encryption/Manager.py" />
+        <option value="$PROJECT_DIR$/encryption/keys.pkl" />
+        <option value="$PROJECT_DIR$/encryption/plaintext.txt" />
+        <option value="$PROJECT_DIR$/encryption/CryptoManager.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="223" />
-    <option name="y" value="70" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="205" />
+    <option name="y" value="43" />
     <option name="width" value="2300" />
     <option name="height" value="1331" />
   </component>
@@ -157,7 +196,49 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.CryptoManager">
+    <configuration name="Crypto" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AES256-AES128-3DES-Python3.7" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Chris\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/encryption" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\Chris\Documents\GitHub\AES256-AES128-3DES-Python3.7\encryption\CryptoManager.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="CryptoManager" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AES256-AES128-3DES-Python3.7" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/encryption" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/encryption/CryptoManager.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Manager" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AES256-AES128-3DES-Python3.7" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -170,7 +251,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/encryption/Manager.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Chris\Documents\GitHub\AES256-AES128-3DES-Python3.7\encryption\CryptoManager.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -179,9 +260,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.Crypto" />
+      <item itemvalue="Python.Manager" />
+      <item itemvalue="Python.CryptoManager" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.CryptoManager" />
         <item itemvalue="Python.Manager" />
+        <item itemvalue="Python.Crypto" />
       </list>
     </recent_temporary>
   </component>
@@ -199,26 +287,45 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="223" y="70" width="2300" height="1331" extended-state="0" />
+    <frame x="205" y="43" width="2300" height="1331" extended-state="0" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21662246" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09460654" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32999164" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36925647" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36925647" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21662246" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32999164" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36925647" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -238,24 +345,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encryption/words.txt">
+    <entry file="file://$PROJECT_DIR$/encryption/words.txt" />
+    <entry file="file://$PROJECT_DIR$/encryption/text.txt" />
+    <entry file="file://$USER_HOME$/Desktop/Submission/Manager.py" />
+    <entry file="file://$PROJECT_DIR$/encryption/simple1.pkl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encryption/keys.pkl">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="256" selection-start-column="256" selection-end-column="256" />
+        <state relative-caret-position="22">
+          <caret line="2" column="35" lean-forward="true" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encryption/text.txt">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/hmac.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        <state relative-caret-position="3322">
+          <caret line="152" selection-start-line="152" selection-end-line="152" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/venv/Lib/site-packages/Crypto/Util/Padding.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="89" selection-start-line="89" selection-end-line="89" />
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
         </state>
       </provider>
     </entry>
@@ -266,24 +379,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encryption/Manager.py">
+    <entry file="file://$PROJECT_DIR$/encryption/plaintext.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1801">
-          <caret line="168" column="39" selection-start-line="168" selection-start-column="39" selection-end-line="168" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1548376260159" expanded="true" signature="3475:3478" ph="..." />
-            <marker date="1548376260159" expanded="true" signature="7353:7358" ph="..." />
-          </folding>
+        <state>
+          <caret column="14" lean-forward="true" selection-start-column="14" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/Submission/Manager.py">
+    <entry file="file://$PROJECT_DIR$/encryption/CryptoManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="531">
+          <caret line="167" column="32" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#6187#7321#0" />
+            <element signature="e#7903#9176#0" />
+            <marker date="1548460382875" expanded="true" signature="3056:3058" ph="..." />
+            <marker date="1548460382875" expanded="true" signature="4741:5946" ph="..." />
+            <marker date="1548460382875" expanded="false" signature="8364:8369" ph="..." />
+            <marker date="1548460382875" expanded="true" signature="9662:10094" ph="..." />
           </folding>
         </state>
       </provider>
