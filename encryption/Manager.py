@@ -8,27 +8,66 @@ from Crypto.Cipher import AES
 import Crypto.Cipher.AES
 import Crypto.Util.Padding
 from binascii import hexlify, unhexlify
+import secrets
+
+"""
+ This program uses a string to demonstrate a round-trip encryption/decryption
+of 3DES, AES128 and AES256, to and from a text file.
+
+ Initial creation of a master key is done using PBKDF#2.
+User is allowed to select either sha256 or sha512. 100,000 iterations and a long
+password were chosen to prevent cracking.
+
+ Both the encryption key and hmac key are derived from the master key using PBKDF#2
+and 1 iteration. Salt values are dynamically created using proven cryptographic libraries.
+
+ Encryption algorithms are implemented using CBC chaining mode. IV's are randomly generated
+and one block in length, adjusting size to the chosen algorithm.
+
+ Python was chosen due to strong cryptographic support via libraries, and intuitive data
+conversion.
+"""
 
 
-def generate_master_key(i):  # Creation of the master key using PBKDF#2 with sha512
+def generate_master_key(i):
+    # Creation of master key using PBKDF#2 hashed with either SHA256 or SHA512.
+    # Salt is a randomly generated 16 characters in hex format.
+
+    salt = str.encode(secrets.token_hex(8))
     if i == 1:
-        key = hashlib.pbkdf2_hmac('sha256', b'>>$$MasterPassword9000$$<<', b'A_g00d_SaLt', 100000)
+        key = hashlib.pbkdf2_hmac('sha256', b'>>$$MasterPassword9000$$<<', salt, 100000)
     else:
-        key = hashlib.pbkdf2_hmac('sha512', b'>>$$MasterPassword9000$$<<', b'A_g00d_SaLt', 100000)
-    return key  # if trouble, use binary.hexlify
+        key = hashlib.pbkdf2_hmac('sha512', b'>>$$MasterPassword9000$$<<', salt, 100000)
+    return key
 
 
 def generate_encryption_key(key_length=16):
-    key = hashlib.pbkdf2_hmac('sha256', master_key, b'An_EvEn_Better_SalT', 1, key_length)
+    # Derivation of encryption key using PBKDF#2
+    # Hashed with sha256 and randomly generated salt.
+
+    salt = str.encode(secrets.token_hex(8))
+    key = hashlib.pbkdf2_hmac('sha256', master_key, salt, 1, key_length)
     return key
+
+
+def generate_hmac(data="123"):
+    # Creation of HMAC. Should be IV + encrypted data
+
+    return hmac.new(hmac_key, data, hashlib.sha256).hexdigest()
 
 
 def hmac_key(key_length=16):
-    key = hashlib.pbkdf2_hmac('sha256', master_key, b'A_DiffereNT_SalT', 1, key_length)
+    # Derivation of HMAC key
+
+    salt = str.encode(secrets.token_hex(8))
+    key = hashlib.pbkdf2_hmac('sha256', master_key, salt, 1, key_length)
     return key
 
 
-def hash_select():  # Get user selection for desired hash algorithm
+def hash_select():
+    # Obtain user selection for desired hash algorithm
+    # to be used with the generation of the master key
+
     print('Would you like to use sha256 or sha512?')
     print('1. sha256')
     print('2. sha512')
@@ -52,45 +91,38 @@ def hash_select():  # Get user selection for desired hash algorithm
 
 
 def algorithm_select():
+    # Obtain user selection for desired algorithm
+
     print("Please select which algorithm you would like to use")
     print("1. 3des")
     print("2. aes128")
     print("3. aes256")
+    print("4. aes128 verbose")
     while True:
         try:
             i = int(input())
-            if i == 1:
+            if i == 1 or i == 2\
+                    or i == 3 or i == 4:
                 break
-            if i == 2:
-                break
-            if i == 3:
-                break
-            print('Enter 1, 2 or 3')
+            print('Enter 1, 2, 3 or 4')
         except ValueError:
-            print("Please enter 1, 2 or 3")
+            print('Enter 1, 2, 3 or 4')
             continue
     if i == 1:
         encrypt_3des()
-
     if i == 2:
         encrypt_aes128()
-
     if i == 3:
         encrypt_aes256()
+    if i == 4:
+        encrypt_aes128_verbose()
 
 
 def generate_iv(block_size=56):
+    # Generated random bytes of various block size
+    # to be used as an IV.
+
     return get_random_bytes(block_size)
-
-
-def encrypt_3des():  # Implementation of 3des
-    block_size = 16  # Block size of 64 bits for 3des
-    encryption_key = generate_encryption_key(block_size)
-    data = "This is my encrypted data"
-    cipher = triple_des(encryption_key, CBC, generate_iv(8), pad=None, padmode=PAD_PKCS5)
-    encrypted_information = cipher.encrypt(data)
-    print("Encrypted: %r" % encrypted_information)
-    print("Decrypted: %r" % cipher.decrypt(encrypted_information))
 
 
 def encrypt_aes128():
@@ -112,7 +144,10 @@ def encrypt_aes128():
     ciphertext = cipher.encrypt(plaintext)
     f = open("encrypted.txt", "wb")
     f.write(hexlify(ciphertext))
-    print(ciphertext)
+    print(ciphertext+iv)
+    temp = ciphertext+iv
+    local_hmac = generate_hmac(temp)
+    print("HMAC IS: " + local_hmac)
     del ciphertext
 
     # Opening file and decrypting data.
@@ -143,7 +178,10 @@ def encrypt_aes256():
     ciphertext = cipher.encrypt(plaintext)
     f = open("encrypted.txt", "wb")
     f.write(hexlify(ciphertext))
-    print(ciphertext)
+    print(ciphertext+iv)
+    temp = ciphertext+iv
+    local_hmac = generate_hmac(temp)
+    print("HMAC IS: " + local_hmac)
     del ciphertext
 
     # Opening file and decrypting data.
@@ -155,47 +193,82 @@ def encrypt_aes256():
     print(plaintext.decode())
 
 
-def generate_hmac():
-    return hmac.new(hmac_key, b'encrypted message here', hashlib.sha256).hexdigest()
+def encrypt_3des():
+    # Implementation of 3DES.
+    # Block size of 16 with PKCS7 Padding.
+
+    # Initial set up
+    block_size = 16
+    iv = generate_iv(8)
+    encryption_key = generate_encryption_key(block_size)
+    plaintext = b'THIS IS THE DATA THAT IS GOING TO BE ENCRYPTED'
+    print(plaintext.decode())
+    plaintext = Crypto.Util.Padding.pad(plaintext, block_size, style='pkcs7')
+
+    # Encryption to file using 3des, CBC
+    cipher = triple_des(encryption_key, CBC, iv, pad=None)
+    ciphertext = cipher.encrypt(plaintext)
+    f = open("encrypted.txt", "wb")
+    f.write(hexlify(ciphertext))
+    temp = ciphertext + iv
+    local_hmac = generate_hmac(temp)
+    print("\nRaw encrypted:")
+    print(ciphertext)
+    print("\nHex:")
+    print(hexlify(ciphertext))
+
+    # Opening file and retrieving encrypted content
+    f = open("encrypted.txt", "r")
+    ciphertext = f.read().encode("utf-8")
+    print("\nHMAC IS:\n" + local_hmac)
+    print("\nDecrypted and decoded:")
+
+    # Decryption
+    plaintext = cipher.decrypt(unhexlify(ciphertext))
+    plaintext = Crypto.Util.Padding.unpad(plaintext, block_size, style='pkcs7')
+    print(plaintext.decode())
 
 
-def encrypt_aes128_verbose():  # VERBOSE IMPLEMENTATION FOR DEMO PURPOSES
-    # REMOVE ME
+def encrypt_aes128_verbose():
+    # VERBOSE IMPLEMENTATION FOR DEMO PURPOSES
+
     print()
-    block_size = 16  # Block size of 128 bits for aes128.
+    print("ROUND TRIP PRINTED:\n")
+    block_size = 16
     encryption_key = generate_encryption_key(block_size)
     iv = generate_iv(16)
-    plaintext = b'ENCRYPT ME'
+    plaintext = b'**ENCRYPT ME**'
 
-    print("Origional text before pkcs7 padding is added:")
+    print("Original text before pkcs7 padding is added:")
     print(plaintext.decode())
 
     plaintext = Crypto.Util.Padding.pad(plaintext, block_size, style='pkcs7')
-    print("\nThis is now the data encoded with utf-8 and padded with pkcs7")
+    print("\nData encoded with utf-8 and padded with pkcs7:")
     print(plaintext)
-    print()
     cipher = AES.new(encryption_key, AES.MODE_CBC, iv)
     ciphertext = cipher.encrypt(plaintext)
 
     print("\nRaw Encrypted data:")
     print(ciphertext)
-    print("Hex:")
+    print("\nConverted to hex and written to file:")
     print(hexlify(ciphertext))
     print()
 
-    f = open("text.txt", "wb")
+    f = open("encrypted.txt", "wb")
     f.write(hexlify(ciphertext))
-    f = open("text.txt", "r")
+    del ciphertext
 
-    temp = f.read().encode("utf-8")
+    ciphertext = f.read().encode("utf-8")
+    print("Text read from file:")
+    print(ciphertext)
 
     decipher = AES.new(encryption_key, AES.MODE_CBC, iv)
-    plaintext = decipher.decrypt(unhexlify(temp))
+    plaintext = decipher.decrypt(unhexlify(ciphertext))
 
-    print("Back to unencrypted with padding")
+    print("\nText unencrypted with padding")
     print(plaintext)
     plaintext = Crypto.Util.Padding.unpad(plaintext, block_size, style='pkcs7')
-    print("\noriginal form:")
+    print("\nOriginal form:")
     print(plaintext.decode())
 
 
@@ -203,4 +276,3 @@ def encrypt_aes128_verbose():  # VERBOSE IMPLEMENTATION FOR DEMO PURPOSES
 master_key = hash_select()
 hmac_key = hmac_key()
 algorithm_select()
-
