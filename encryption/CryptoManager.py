@@ -10,11 +10,10 @@ from binascii import hexlify
 from binascii import unhexlify
 from pyDes import *
 import pickle
-
 #
 #   Christopher Ijams 2019
 #
-#   CryptoManager.py : Encryption implementation for files
+#   CryptoManager.py : Encryption implementation for files.
 #
 # ===========================================================================
 #
@@ -22,7 +21,8 @@ import pickle
 #  as "plaintext.txt". Run Encryption. For decryption, program will detect
 #  what algorithm was used to encrypt with. If it is AES128, AES256, or 3DES
 #  it will attempt to decrypted it. Metadata for encryption serialized with pickle
-#  and stored as stored as keys.pkl locally.
+#  and stored as stored as keys.pkl locally. HMAC Generated and checked locally
+#  to ensure no text alterations have occurred.
 #
 # ===========================================================================
 #
@@ -55,7 +55,7 @@ def generate_master_key(algorithm_choice):
     Return:
         key (byte):
             The generated master key to be used for encryption and
-            hashing derivation
+            hashing derivation.
     """
     salt = str.encode(secrets.token_hex(8))
     if algorithm_choice == 1:
@@ -66,8 +66,8 @@ def generate_master_key(algorithm_choice):
 
 
 def generate_encryption_key(key_length=16):
-    """Derivation of encryption key using PBKDF#2
-    Hashed with sha256 and randomly generated salt.
+    """Derivation of encryption key using PBKDF#2.
+    Hashed and salted.
 
     Args:
         key_length (integer):
@@ -85,7 +85,7 @@ def generate_encryption_key(key_length=16):
 
 
 def generate_hmac(key, data=b'123'):
-    """Generate the HMAC.
+    """Generate of the HMAC.
 
     Args:
         data (byte):
@@ -102,8 +102,8 @@ def generate_hmac(key, data=b'123'):
 
 
 def generate_hmac_key(key_length=16):
-    """Derivation of HMAC key using PBKDF#2
-    Hashed with SHA256 and randomly generated salt.
+    """Derivation of HMAC key using PBKDF#2.
+    Hashed and salted.
 
     Args:
         key_length (integer):
@@ -143,7 +143,6 @@ def hash_select():
             print('Enter 1 or 2.')
         except ValueError:
             print("Please enter 1 or 2")
-            continue
     key = ""
     if hash_choice == 1:
         key = generate_master_key(1)
@@ -438,7 +437,6 @@ def user_choice():
     Return:
         users_choice (integer):
             Numeric representation of the users choice.
-
     """
     print("\n\nWould you like to encrypt or decrypt?")
     print("1. Encrypt")
@@ -471,17 +469,15 @@ def get_int(self=1):
                 print('Enter 1 or 2')
             except ValueError:
                 print('Enter 1 or 2')
-                continue
         if self == 2:
             try:
                 users_choice = int(input())
-                if users_choice == users_choice\
+                if users_choice == 1\
                         or users_choice == 2 or users_choice == 3:
                     break
                 print('Enter 1, 2 or 3')
             except ValueError:
                 print('Enter 1, 2 or 3')
-                continue
     return users_choice
 
 
@@ -503,6 +499,7 @@ if choice == 1:
     master_key = hash_select()
     hmac_derived_key = generate_hmac_key()
 
+    # User selection of encryption algorithm.
     print("Please select which algorithm you would like to use:")
     print("1. 3des")
     print("2. aes128")
