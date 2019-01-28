@@ -84,23 +84,24 @@ def generate_encryption_key(key_length=16):
     return key
 
 
-def generate_hmac(data=b'123'):
+def generate_hmac(key, data=b'123'):
     """Generate the HMAC.
 
     Args:
         data (byte):
             The cipher text to be hashed. Default data
             to prevent errors.
+        key (byte):
+            The derived key from the master encryption key.
 
     Return:
         HMAC (byte):
             The HMAC of the cipher text.
     """
+    return hmac.new(key, data, hashlib.sha256).hexdigest()
 
-    return hmac.new(hmac_key, data, hashlib.sha256).hexdigest()
 
-
-def hmac_key(key_length=16):
+def generate_hmac_key(key_length=16):
     """Derivation of HMAC key using PBKDF#2
     Hashed with SHA256 and randomly generated salt.
 
@@ -190,11 +191,14 @@ def encrypt_aes128(plaintext):
 
     # Encryption of data and generation of HMAC.
     ciphertext = cipher.encrypt(plaintext)
-    local_hmac = generate_hmac(ciphertext + iv)
+    local_hmac = generate_hmac(hmac_derived_key, ciphertext + iv)
 
     # Write encrypted data to file.
-    f = open("encrypted.txt", "wb")
-    f.write(hexlify(ciphertext))
+    try:
+        f = open("encrypted.txt", "wb")
+        f.write(hexlify(ciphertext))
+    except FileNotFoundError:
+        print("Can not find file!")
 
     # User feedback.
     print("NOW ENCRYPTING:" + algorithm)
@@ -204,15 +208,22 @@ def encrypt_aes128(plaintext):
     del ciphertext
 
     # Generate and serialize cipher metadata.
-    local_keys = dict(int_list=[1, 2, 3, 4],
+    local_keys = dict(int_list=[],
                       my_keys=encryption_key,
-                      my_hmac=local_hmac,
+                      my_hmac=hmac_derived_key,
                       my_iv=iv,
                       my_block_size=block_size,
                       my_algorithm=algorithm,
                       my_key_size=key_size)
 
     pickle.dump(local_keys, open('keys.pkl', 'wb'))
+
+    # Generate HMAC file.
+    try:
+        f = open("hmac.txt", "w")
+        f.write(local_hmac)
+    except FileNotFoundError:
+        print("Can not find file!")
 
 
 def encrypt_aes256(plaintext):
@@ -243,11 +254,14 @@ def encrypt_aes256(plaintext):
 
     # Encryption of data and generation of HMAC.
     ciphertext = cipher.encrypt(plaintext)
-    local_hmac = generate_hmac(ciphertext + iv)
+    local_hmac = generate_hmac(hmac_derived_key, ciphertext+iv)
 
     # Write encrypted data to file.
-    f = open("encrypted.txt", "wb")
-    f.write(hexlify(ciphertext))
+    try:
+        f = open("encrypted.txt", "wb")
+        f.write(hexlify(ciphertext))
+    except FileNotFoundError:
+        print("Can not find file!")
 
     # User feedback.
     print("NOW ENCRYPTING:" + algorithm)
@@ -257,15 +271,22 @@ def encrypt_aes256(plaintext):
     del ciphertext
 
     # Generate and serialize cipher metadata.
-    local_keys = dict(int_list=[1, 2, 3, 4],
+    local_keys = dict(int_list=[],
                       my_keys=encryption_key,
-                      my_hmac=local_hmac,
+                      my_hmac=hmac_derived_key,
                       my_iv=iv,
                       my_block_size=block_size,
                       my_algorithm=algorithm,
                       my_key_size=key_size)
 
     pickle.dump(local_keys, open('keys.pkl', 'wb'))
+
+    # Generate HMAC file.
+    try:
+        f = open("hmac.txt", "w")
+        f.write(local_hmac)
+    except FileNotFoundError:
+        print("Can not find file!")
 
 
 def encrypt_3des(plaintext):
@@ -292,7 +313,7 @@ def encrypt_3des(plaintext):
 
     # Encryption of data and generation of HMAC.
     ciphertext = cipher.encrypt(plaintext)
-    local_hmac = generate_hmac(ciphertext+iv)
+    local_hmac = generate_hmac(hmac_derived_key, ciphertext+iv)
 
     # Write encrypted data to file.
     f = open("encrypted.txt", "wb")
@@ -306,15 +327,22 @@ def encrypt_3des(plaintext):
     del ciphertext
 
     # Generate and serialize cipher metadata.
-    local_keys = dict(int_list=[1, 2, 3, 4],
+    local_keys = dict(int_list=[],
                       my_keys=encryption_key,
-                      my_hmac=local_hmac,
+                      my_hmac=hmac_derived_key,
                       my_iv=iv,
                       my_block_size=block_size,
                       my_algorithm=algorithm,
                       my_key_size=key_size)
 
     pickle.dump(local_keys, open('keys.pkl', 'wb'))
+
+    # Generate HMAC file.
+    try:
+        f = open("hmac.txt", "w")
+        f.write(local_hmac)
+    except FileNotFoundError:
+        print("Can not find file!")
 
 
 def decrypt():
@@ -327,11 +355,9 @@ def decrypt():
 
     Return: None
     """
-    # TODO generate HMAC INSTEAD OF READING IT
-
     # Initialize variables
     algorithm = "Unknown Algorithm"
-    local_hmac = ""
+    local_recovered_hmac_key = ""
     encryption_key = ""
     iv = ""
     block_size = ""
@@ -340,7 +366,7 @@ def decrypt():
     try:
         enc_meta = pickle.load(open('keys.pkl', 'rb'))
         encryption_key = enc_meta['my_keys']
-        local_hmac = enc_meta['my_hmac']
+        local_recovered_hmac_key = enc_meta['my_hmac']
         iv = enc_meta['my_iv']
         block_size = enc_meta['my_block_size']
         algorithm = enc_meta['my_algorithm']
@@ -352,11 +378,38 @@ def decrypt():
         print("Error trying to decrypt " + algorithm)
         sys.exit(0)
 
-    # Verify HMAC and read ciphertext from file.
+    # Opening file and reading ciphertext.
     print("NOW DECRYPTING WITH " + algorithm.upper() + ":")
-    print("\nHMAC:" + local_hmac)
-    f = open("encrypted.txt", "r")
-    ciphertext = f.read().encode("utf-8")
+    ciphertext = "Failed to load."
+    try:
+        f = open("encrypted.txt", "br")
+        ciphertext = f.read()
+    except FileNotFoundError:
+        print("Can not find file!")
+
+    # Generating HMAC
+    local_hmac = generate_hmac(local_recovered_hmac_key, unhexlify(ciphertext)+iv)
+    print("\nGenerated HMAC:")
+    print(local_hmac)
+
+    # Reading HMAC generated at encryption time.
+    test_hmac = "Failed to load."
+    try:
+        f = open("hmac.txt", "r")
+        test_hmac = f.read()
+
+    except FileNotFoundError:
+        print("Can not find file!")
+
+    print("\nRegistered HMAC:")
+    print(test_hmac)
+
+    # Ensure match
+    if test_hmac != local_hmac:
+        print("\nCORRUPTED DATA: Alterations have been made!")
+        sys.exit(0)
+    else:
+        print("\nMATCH")
 
     # Choose decryption algorithm.
     if algorithm == "aes128" or algorithm == "aes256":
@@ -368,8 +421,11 @@ def decrypt():
     plaintext = decipher.decrypt(unhexlify(ciphertext))
     plaintext = Crypto.Util.Padding.unpad(plaintext, block_size, style='pkcs7')
     print("\nDecrypted:")
-    f = open("plaintext.txt", "w")
-    f.write(plaintext.decode())
+    try:
+        f = open("plaintext.txt", "w")
+        f.write(plaintext.decode())
+    except FileNotFoundError:
+        print("Can not find file!")
     print(plaintext.decode())
 
 
@@ -405,7 +461,6 @@ def get_int(self=1):
     Return:
         users_choice (integer):
             Numeric representation of the users choice.
-
     """
     while True:
         if self == 1:
@@ -446,7 +501,7 @@ if choice == 1:
         print("Ensure the text to be encrypted is in the local directory as \"plaintext.txt\"")
         sys.exit(0)
     master_key = hash_select()
-    hmac_key = hmac_key()
+    hmac_derived_key = generate_hmac_key()
 
     print("Please select which algorithm you would like to use:")
     print("1. 3des")
