@@ -31,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crypto_unit_testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+            <state relative-caret-position="206">
+              <caret line="24" column="28" lean-forward="true" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -157,7 +157,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for crypto_unit_testing.MyTestCase">
+  <component name="RunManager" selected="Python tests.Unittests in crypto_unit_testing.py">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -198,27 +198,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="cryptomanager" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AES256-AES128-3DES-Python3.7" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cryptomanager.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Unittests for crypto_unit_testing.MyTestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="AES256-AES128-3DES-Python3.7" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -233,7 +212,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_another_thing" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_a" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="AES256-AES128-3DES-Python3.7" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -243,11 +222,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;crypto_unit_testing.MyTestCase.test_another_thing&quot;" />
+      <option name="_new_target" value="&quot;crypto_unit_testing.MyTestCase.test_a&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_something" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_b" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="AES256-AES128-3DES-Python3.7" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -257,7 +236,21 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;crypto_unit_testing.MyTestCase.test_something&quot;" />
+      <option name="_new_target" value="&quot;crypto_unit_testing.MyTestCase.test_b&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_master_keys" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="AES256-AES128-3DES-Python3.7" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;crypto_unit_testing.MyTestCase.test_master_keys&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -276,19 +269,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.cryptomanager" />
       <item itemvalue="Python tests.Unittests in crypto_unit_testing.py" />
-      <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_something" />
-      <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_another_thing" />
       <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase" />
+      <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_b" />
+      <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_a" />
+      <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_master_keys" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase" />
-        <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_something" />
-        <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_another_thing" />
         <item itemvalue="Python tests.Unittests in crypto_unit_testing.py" />
-        <item itemvalue="Python.cryptomanager" />
+        <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_master_keys" />
+        <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase" />
+        <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_a" />
+        <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_b" />
       </list>
     </recent_temporary>
   </component>
@@ -306,35 +299,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 31m 27s.xml">
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 20h 13m 02s.xml">
       <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 31m 41s.xml">
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase_test_master_keys - 2019.01.31 at 20h 17m 22s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_master_keys" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.31 at 20h 17m 54s.xml">
+      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 20h 21m 49s.xml">
       <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 32m 00s.xml">
-      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase_test_master_keys - 2019.01.31 at 20h 22m 50s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_master_keys" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 32m 15s.xml">
-      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase_test_master_keys - 2019.01.31 at 20h 25m 47s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_master_keys" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 32m 30s.xml">
-      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
+    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.31 at 20h 26m 08s.xml">
+      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 33m 57s.xml">
-      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase_test_master_keys - 2019.01.31 at 20h 27m 46s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_master_keys" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 35m 26s.xml">
-      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase_test_master_keys - 2019.01.31 at 20h 28m 16s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_master_keys" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 35m 54s.xml">
-      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 36m 08s.xml">
-      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 38m 01s.xml">
-      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
+    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.31 at 20h 32m 51s.xml">
+      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -346,7 +339,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32882884" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2072072" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2867868" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -438,8 +431,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crypto_unit_testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        <state relative-caret-position="206">
+          <caret line="24" column="28" lean-forward="true" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
