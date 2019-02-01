@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2223bcc2-a649-4a7a-8b12-7920ed99919b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crypto_unit_testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto_unit_testing.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crypto_unit_testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="24" column="28" lean-forward="true" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+            <state relative-caret-position="393">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -157,7 +156,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in crypto_unit_testing.py">
+  <component name="RunManager" selected="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_master_keys">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -277,8 +276,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests in crypto_unit_testing.py" />
         <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_master_keys" />
+        <item itemvalue="Python tests.Unittests in crypto_unit_testing.py" />
         <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase" />
         <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_a" />
         <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_b" />
@@ -299,9 +298,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 20h 13m 02s.xml">
-      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase_test_master_keys - 2019.01.31 at 20h 17m 22s.xml">
       <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_master_keys" configurationId="tests" />
     </history-entry>
@@ -328,6 +324,9 @@
     </history-entry>
     <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.31 at 20h 32m 51s.xml">
       <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase_test_master_keys - 2019.01.31 at 20h 43m 42s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_master_keys" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -431,8 +430,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crypto_unit_testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="24" column="28" lean-forward="true" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+        <state relative-caret-position="393">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
