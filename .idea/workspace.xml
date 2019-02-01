@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2223bcc2-a649-4a7a-8b12-7920ed99919b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/A09.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crypto_unit_testing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/encryption/.idea/testing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/testing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AES256-AES128-3DES-Python3.7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AES256-AES128-3DES-Python3.7.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Decrypted.png" beforeDir="false" afterPath="$PROJECT_DIR$/encryption/Decrypted.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Encryption.png" beforeDir="false" afterPath="$PROJECT_DIR$/encryption/Encryption.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/encryption/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encryption/CryptoManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/cryptomanager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encryption/encrypted.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encryption/hmac.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encryption/keys.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encryption/plaintext.txt" beforeDir="false" afterPath="$PROJECT_DIR$/plaintext.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crypto_unit_testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto_unit_testing.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cryptomanager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="82" selection-start-line="82" selection-end-line="82" />
+            <state relative-caret-position="300">
+              <caret line="150" column="14" lean-forward="true" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -46,20 +31,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crypto_unit_testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="89">
+              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/unittest/case.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
             </state>
           </provider>
         </entry>
@@ -92,6 +68,7 @@
       <find>pi</find>
       <find>3des</find>
       <find>generate_m</find>
+      <find>hash_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -119,10 +96,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="960" />
-    <option name="y" value="124" />
-    <option name="width" value="2589" />
-    <option name="height" value="1402" />
+    <option name="x" value="959" />
+    <option name="y" value="122" />
+    <option name="width" value="2590" />
+    <option name="height" value="1404" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -180,7 +157,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in crypto_unit_testing.py">
+  <component name="RunManager" selected="Python tests.Unittests for crypto_unit_testing.MyTestCase">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -242,46 +219,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="testing (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Unittests for crypto_unit_testing.MyTestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="AES256-AES128-3DES-Python3.7" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testing.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;crypto_unit_testing.MyTestCase&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="testing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_another_thing" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="AES256-AES128-3DES-Python3.7" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/encryption" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/encryption/testing.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;crypto_unit_testing.MyTestCase.test_another_thing&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_something" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
@@ -313,19 +276,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.testing" />
       <item itemvalue="Python.cryptomanager" />
-      <item itemvalue="Python.testing (1)" />
       <item itemvalue="Python tests.Unittests in crypto_unit_testing.py" />
       <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_something" />
+      <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_another_thing" />
+      <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests in crypto_unit_testing.py" />
+        <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase" />
         <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_something" />
+        <item itemvalue="Python tests.Unittests for crypto_unit_testing.MyTestCase.test_another_thing" />
+        <item itemvalue="Python tests.Unittests in crypto_unit_testing.py" />
         <item itemvalue="Python.cryptomanager" />
-        <item itemvalue="Python.testing (1)" />
-        <item itemvalue="Python.testing" />
       </list>
     </recent_temporary>
   </component>
@@ -343,47 +306,47 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.29 at 19h 35m 32s.xml">
-      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 31m 27s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.29 at 19h 40m 21s.xml">
-      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 31m 41s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.29 at 19h 40m 37s.xml">
-      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 32m 00s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.29 at 19h 41m 31s.xml">
-      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 32m 15s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase_test_something - 2019.01.29 at 19h 42m 28s.xml">
-      <configuration name="Unittests for crypto_unit_testing.MyTestCase.test_something" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 32m 30s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.29 at 19h 42m 55s.xml">
-      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 33m 57s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.29 at 19h 43m 46s.xml">
-      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 35m 26s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.29 at 19h 44m 27s.xml">
-      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 35m 54s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.29 at 19h 44m 51s.xml">
-      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 36m 08s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_crypto_unit_testing_py - 2019.01.29 at 19h 45m 05s.xml">
-      <configuration name="Unittests in crypto_unit_testing.py" configurationId="tests" />
+    <history-entry file="Unittests_for_crypto_unit_testing_MyTestCase - 2019.01.31 at 19h 38m 01s.xml">
+      <configuration name="Unittests for crypto_unit_testing.MyTestCase" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1477" height="797" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.28128725" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.05759889" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32882884" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.44894895" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2072072" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -430,63 +393,18 @@
     <entry file="file://$PROJECT_DIR$/encryption/words.txt" />
     <entry file="file://$PROJECT_DIR$/encryption/text.txt" />
     <entry file="file://$USER_HOME$/Desktop/Submission/Manager.py" />
-    <entry file="file://$PROJECT_DIR$/encryption/keys.pkl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/encryption/keys.pkl" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/hmac.py" />
     <entry file="file://$USER_HOME$/venv/Lib/site-packages/Crypto/Util/Padding.py" />
-    <entry file="file://$PROJECT_DIR$/encryption/hmac.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encryption/plaintext.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/encryption/hmac.txt" />
+    <entry file="file://$PROJECT_DIR$/encryption/plaintext.txt" />
     <entry file="file://$PROJECT_DIR$/encryption/.idea/testing.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/encryption/UnitTesting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encryption/testing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encryption/cryptomanager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encryption/encrypted.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="2" selection-start-column="2" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/encryption/UnitTesting.py" />
+    <entry file="file://$PROJECT_DIR$/encryption/testing.py" />
+    <entry file="file://$PROJECT_DIR$/encryption/cryptomanager.py" />
+    <entry file="file://$PROJECT_DIR$/encryption/encrypted.txt" />
     <entry file="file://$PROJECT_DIR$/plaintext.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -507,34 +425,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/testing.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/unittest/case.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/cryptomanager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
+        <state relative-caret-position="300">
+          <caret line="150" column="14" lean-forward="true" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crypto_unit_testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="89">
+          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
