@@ -55,7 +55,7 @@ class MyTestCase(unittest.TestCase):
     def test_encrypt_3des(self):
         print("stub")
 
-        
+
 if __name__ == '__main__':
     case = MyTestCase()
     case.setUp()
