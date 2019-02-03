@@ -10,77 +10,68 @@ from binascii import hexlify
 from binascii import unhexlify
 from pyDes import *
 import pickle
-#
-#   Christopher Ijams 2019
-#
-#   cryptomanager.py : Encryption implementation for files.
-#
-# ===========================================================================
-#
-#    TO USE: Ensure message to be encrypted is local to cryptomanager.py
-#  as "plaintext.txt". Run Encryption. For decryption, program will detect
-#  what algorithm was used to encrypt with. If it is AES128, AES256, or 3DES
-#  it will attempt to decrypted it. Metadata for encryption serialized with pickle
-#  and stored as stored as keys.pkl locally. HMAC Generated and checked locally
-#  to ensure no text alterations have occurred.
-#
-# ===========================================================================
-#
-#    This program demonstrates a round-trip encryption/decryption
-#  of 3DES, AES128 and AES256, to and from a text file.
-#
-#    Initial creation of a master key is done using PBKDF#2.
-#  User is allowed to select either sha256 or sha512. 100,000 iterations and a long
-#  password were chosen to prevent cracking.
-#
-#    Both the encryption key and hmac key are derived from the master key using PBKDF#2
-#  and 1 iteration. Salt values are dynamically created using proven cryptographic libraries.
-#
-#    Encryption algorithms are implemented using CBC chaining mode. IV's are randomly generated
-#  and one block in length, adjusting size to the chosen algorithm.
-#
-#    Python was chosen due to strong cryptographic support via libraries, and intuitive data
-#  conversion.
 
 
-def generate_master_key(algorithm_choice):
+def generate_master_key(algorithm_choice, password=b'>>$$MasterPassword9000$$<<'):
     """Creation of master key using PBKDF#2 hashed with either SHA256 or SHA512.
     Salt is a randomly generated 16 characters in hex format.
 
     Args:
-        algorithm_choice (integer):
+        algorithm_choice (string):
             An integer who's value determines which algorithm is
             going to be used.
+        password (byte):
+            The password used to generate the master encryption
+            keys.
 
     Return:
         key (byte):
             The generated master key to be used for encryption and
             hashing derivation.
     """
-    salt = str.encode(secrets.token_hex(8))
-    if algorithm_choice == 1:
-        key = hashlib.pbkdf2_hmac('sha256', b'>>$$MasterPassword9000$$<<', salt, 100000)
-    else:
-        key = hashlib.pbkdf2_hmac('sha512', b'>>$$MasterPassword9000$$<<', salt, 100000)
+    key = "Invalid algorithm"
+    try:
+        salt = str.encode(secrets.token_hex(8))
+        if algorithm_choice == 'sha256':
+            key = hashlib.pbkdf2_hmac('sha256', password, salt, 100000)
+        elif algorithm_choice == 'sha512':
+            key = hashlib.pbkdf2_hmac('sha512', password, salt, 100000)
+        else:
+            raise TypeError
+    except TypeError:
+        print(str(TypeError) + " Expected \'sha256\' or \'sha512\'")
     return key
 
 
-def generate_encryption_key(key_length=16):
+def generate_encryption_key(hash_choice, master_key=""):
     """Derivation of encryption key using PBKDF#2.
     Hashed and salted.
 
     Args:
-        key_length (integer):
+        hash_choice (string):
             Length of the key needed to be generated.
             accepts multiples of 16, expecting values
             of either 16 or 32.
+
+        master_key (byte):
+            The master key used to generate the derived
+            encryption key.
 
     Return:
         key (byte):
             The encryption key for each algorithm.
     """
     salt = str.encode(secrets.token_hex(8))
-    key = hashlib.pbkdf2_hmac('sha256', master_key, salt, 1, key_length)
+    key = "Invalid key Length"
+    try:
+        if hash_choice == 'sha256':
+            key = hashlib.pbkdf2_hmac('sha256', master_key, salt, 1, 16)
+        elif hash_choice == 'sha512':
+            key = hashlib.pbkdf2_hmac('sha512', master_key, salt, 1, 32)
+        else:
+            raise TypeError
+    except TypeError:
+        print(str(TypeError) + " Invalid key length")
     return key
 
 
@@ -101,7 +92,7 @@ def generate_hmac(key, data=b'123'):
     return hmac.new(key, data, hashlib.sha256).hexdigest()
 
 
-def generate_hmac_key(key_length=16):
+def generate_hmac_key(key_length=16, master_key=""):
     """Derivation of HMAC key using PBKDF#2.
     Hashed and salted.
 
@@ -111,43 +102,25 @@ def generate_hmac_key(key_length=16):
             accepts multiples of 16, expecting values
             of either 16 or 32.
 
+        master_key (byte):
+            The master key used to generate the derived
+            encryption key.
+
     Return:
         key (byte):
             The HMAC key.
     """
     salt = str.encode(secrets.token_hex(8))
-    key = hashlib.pbkdf2_hmac('sha256', master_key, salt, 1, key_length)
-    return key
-
-
-def hash_select():
-    """Allows the user to be able to select between SHA126
-    and SHA258 hashing algorithms.
-
-    Args: None.
-
-    Return:
-        key (byte):
-            The master encryption key.
-    """
-    print('Would you like to use sha256 or sha512?')
-    print('1. sha256')
-    print('2. sha512')
-    while True:
-        try:
-            hash_choice = int(input())
-            if hash_choice == 1:
-                break
-            if hash_choice == 2:
-                break
-            print('Enter 1 or 2.')
-        except ValueError:
-            print("Please enter 1 or 2")
-    key = ""
-    if hash_choice == 1:
-        key = generate_master_key(1)
-    if hash_choice == 2:
-        key = generate_master_key(2)
+    key = "Invalid key Length"
+    try:
+        if key_length == 16:
+            key = hashlib.pbkdf2_hmac('sha256', master_key, salt, 1, key_length)
+        elif key_length == 32:
+            key = hashlib.pbkdf2_hmac('sha512', master_key, salt, 1, key_length)
+        else:
+            raise TypeError
+    except TypeError:
+        print(str(TypeError) + " Invalid key length")
     return key
 
 
@@ -167,7 +140,7 @@ def generate_iv(block_size=56):
     return get_random_bytes(block_size)
 
 
-def encrypt_aes128(plaintext):
+def encrypt_aes128(plaintext, encryption_key):
     """Implementation of AES256. Key size of 126 bits with
     a block size of 126. PKCS7 padding. Encrypts using AES128
     to a file. Additionally, an HMAC is generated to verify
@@ -176,6 +149,8 @@ def encrypt_aes128(plaintext):
     Args:
         plaintext (byte)
             The plain text to be encrypted.
+        encryption_key (byte)
+            The key used to encrypt the data.
 
     Return: None.
     """
@@ -183,14 +158,22 @@ def encrypt_aes128(plaintext):
     algorithm = "aes128"
     key_size = 16  # 128 bit key.
     block_size = 16
-    encryption_key = generate_encryption_key(key_size)
+    encryption_key = generate_encryption_key('sha256', encryption_key)
+    print(encryption_key)
+    print("HERE")
     iv = generate_iv(block_size)
     plaintext = Crypto.Util.Padding.pad(plaintext, block_size, style='pkcs7')
     cipher = AES.new(encryption_key, AES.MODE_CBC, iv)
 
     # Encryption of data and generation of HMAC.
     ciphertext = cipher.encrypt(plaintext)
-    local_hmac = generate_hmac(hmac_derived_key, ciphertext + iv)
+    #local_hmac = generate_hmac(hmac_derived_key, ciphertext + iv)
+
+
+    # DEFINE HMAC_DERIVED_KEY or seperate functionality
+
+
+
 
     # Write encrypted data to file.
     try:
@@ -202,7 +185,7 @@ def encrypt_aes128(plaintext):
 
     # User feedback.
     print("NOW ENCRYPTING:" + algorithm)
-    print("\nHMAC:\n" + local_hmac)
+#    print("\nHMAC:\n" + local_hmac)
     print("\nEncrypted:")
     print(ciphertext)
     del ciphertext
@@ -210,7 +193,7 @@ def encrypt_aes128(plaintext):
     # Generate and serialize cipher metadata.
     local_keys = dict(int_list=[],
                       my_keys=encryption_key,
-                      my_hmac=hmac_derived_key,
+                      #my_hmac=hmac_derived_key,
                       my_iv=iv,
                       my_block_size=block_size,
                       my_algorithm=algorithm,
@@ -223,7 +206,7 @@ def encrypt_aes128(plaintext):
     # Generate HMAC file.
     try:
         f = open("hmac.txt", "w")
-        f.write(local_hmac)
+#        f.write(local_hmac)
         f.close()
     except FileNotFoundError:
         print("Can not find file!")
@@ -377,7 +360,7 @@ def decrypt():
         with open('keys.pkl', 'rb') as f:
             enc_meta = pickle.load(f)
         encryption_key = enc_meta['my_keys']
-        local_recovered_hmac_key = enc_meta['my_hmac']
+#        local_recovered_hmac_key = enc_meta['my_hmac']
         iv = enc_meta['my_iv']
         block_size = enc_meta['my_block_size']
         algorithm = enc_meta['my_algorithm']
@@ -400,15 +383,15 @@ def decrypt():
         print("Can not find file!")
 
     # Generating HMAC
-    local_hmac = generate_hmac(local_recovered_hmac_key, unhexlify(ciphertext)+iv)
+#    local_hmac = generate_hmac(local_recovered_hmac_key, unhexlify(ciphertext)+iv)
     print("\nGenerated HMAC:")
-    print(local_hmac)
+#    print(local_hmac)
 
     # Reading HMAC generated at encryption time.
     test_hmac = "Failed to load."
     try:
         f = open("hmac.txt", "r")
-        test_hmac = f.read()
+    #    test_hmac = f.read()
         f.close()
 
     except FileNotFoundError:
@@ -418,11 +401,11 @@ def decrypt():
     print(test_hmac)
 
     # Ensure match
-    if test_hmac != local_hmac:
-        print("\nCORRUPTED DATA: Alterations have been made!")
-        sys.exit(0)
-    else:
-        print("\nMATCH")
+  #  if test_hmac != local_hmac:
+  #      print("\nCORRUPTED DATA: Alterations have been made!")
+  #      sys.exit(0)
+ #   else:
+ #       print("\nMATCH")
 
     # Choose decryption algorithm.
     if algorithm == "aes128" or algorithm == "aes256":
@@ -441,96 +424,3 @@ def decrypt():
     except FileNotFoundError:
         print("Can not find file!")
     print(plaintext.decode())
-
-
-def user_choice():
-    """Get the user's decision on if they want to encrypt
-    a file or decrypt one.
-
-    Args: None
-
-    Return:
-        users_choice (integer):
-            Numeric representation of the users choice.
-    """
-    print("\n\nWould you like to encrypt or decrypt?")
-    print("1. Encrypt")
-    print("2. Decrypt")
-    users_choice = get_int(1)
-    if users_choice == 1:
-        return 1
-    if users_choice == 2:
-        return 2
-
-
-def get_int(self=1):
-    """Safely retrieve a numeric representation of
-    a users choice to logic processing.
-
-    Args:
-        self (integer):
-            Control flow for the number of decisions needed.
-
-    Return:
-        users_choice (integer):
-            Numeric representation of the users choice.
-    """
-    while True:
-        if self == 1:
-            try:
-                users_choice = int(input())
-                if users_choice == 1 or users_choice == 2:
-                    break
-                print('Enter 1 or 2')
-            except ValueError:
-                print('Enter 1 or 2')
-        if self == 2:
-            try:
-                users_choice = int(input())
-                if users_choice == 1\
-                        or users_choice == 2 or users_choice == 3:
-                    break
-                print('Enter 1, 2 or 3')
-            except ValueError:
-                print('Enter 1, 2 or 3')
-    return users_choice
-
-
-if __name__ == '__main__':
-    # Start
-    choice = user_choice()
-
-    #  Encryption
-    if choice == 1:
-        try:
-            unencrypted_text = (open('plaintext.txt', 'rb'))
-            unencrypted_text = unencrypted_text.read()
-            print()
-            print("This is the plaintext to be encrypted:")
-            print(unencrypted_text.decode())
-            print()
-        except FileNotFoundError:
-            print("Ensure the text to be encrypted is in the local directory as \"plaintext.txt\"")
-            sys.exit(0)
-        master_key = hash_select()
-        hmac_derived_key = generate_hmac_key()
-
-        # User selection of encryption algorithm.
-        print("Please select which algorithm you would like to use:")
-        print("1. 3des")
-        print("2. aes128")
-        print("3. aes256")
-        print()
-        alg = get_int(2)
-        if alg == 1:
-            print(type(unencrypted_text))
-            print(unencrypted_text)
-            encrypt_3des(unencrypted_text)
-        if alg == 2:
-            encrypt_aes128(unencrypted_text)
-        if alg == 3:
-            encrypt_aes256(unencrypted_text)
-
-    # Decryption
-    if choice == 2:
-        decrypt()
